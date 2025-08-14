@@ -1,25 +1,60 @@
-import { createRouter, createWebHistory } from 'vue-router'
-import HomeView from '../views/HomeView.vue'
+import Home from "@/pages/Home";
+import Cart from "@/pages/Cart";
+import SignIn from "@/pages/SignIn.vue";
+import Register from "@/pages/Register.vue";
+import { createRouter, createWebHistory } from "vue-router";
+import { useUserDataStore } from "@/stores/UserData";
 
 const routes = [
   {
-    path: '/',
-    name: 'home',
-    component: HomeView
+    path: "/",
+    component: Home,
+    meta: {
+      auth: true
+    }
   },
   {
-    path: '/about',
-    name: 'about',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/AboutView.vue')
-  }
-]
+    path: "/cart",
+    component: Cart,
+    meta: {
+      auth: true
+    }
+  },
+  {
+    path: "/sign",
+    name: "sign",
+    component: SignIn,
+    meta: {
+      auth: false
+    }
+  },
+  {
+    path: "/reg",
+    name: "reg",
+    component: Register,
+    meta: {
+      auth: false
+    }
+  },
+];
 
 const router = createRouter({
-  history: createWebHistory(process.env.BASE_URL),
-  routes
+  routes,
+  history: createWebHistory(),
+});
+
+
+router.beforeEach((to, from, next) => {
+  const userDataStore = useUserDataStore()
+  if(to.meta.auth && !userDataStore.userInfo.token) {
+    next('/sign')
+  }else if (!to.meta.auth && userDataStore.userInfo.token){
+    next('/')
+  }
+  else {
+    next()
+  }
+  
 })
 
-export default router
+export default router;

@@ -1,0 +1,20 @@
+$main-white-color: #fff;
+$main-color: #f4f4f4;
+$stroke-color: #C7C7C7;
+$dark-color: #121212;
+$dark-gray-color: #323232;
+$orange-color: #FFBD4A;
+$orange-dark-color: #633F00;
+
+
+
+@font-face {
+  font-family: "TTNormsPro-B";
+  src: url(@/assets/fonts/TTNormsPro-bold.ttf);
+}
+    
+
+@font-face  {
+  font-family: "TTNormsPro-R";
+  src: url(@/assets/fonts/TTNormsPro-regular.ttf);
+}
