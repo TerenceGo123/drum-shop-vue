@@ -4,6 +4,7 @@ import router from './router'
 import {createPinia} from 'pinia'
 import { initializeApp } from "firebase/app";
 import './api'
+import './output.css'
 
 const firebaseConfig = {
   apiKey: "AIzaSyAD7trVpszBqSH1GnpCEPIdAkOoMGZW7gM",

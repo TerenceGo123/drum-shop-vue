@@ -6,14 +6,14 @@
         type="text"
         v-model="searchQuery"
         placeholder="Поиск..."
-        class="input"
+        class="input bg-main-color"
       />
       <div class="user-action">
-        <div class="cart-container">
+        <div class="cart-container cursor-pointer"   @click="$router.push('/cart')">
           <button v-show="userStore.userInfo.cart.length != 0" class="button-cart">
-            <img src="/ShoppingBag.svg" @click="$router.push('/cart')" />
+            <img src="/ShoppingBag.svg"  />
           </button>
-          <div v-show="userStore.userInfo.cart.length != 0" class="sircle">{{ userStore.userInfo.cart.length }}</div>
+          <div v-show="userStore.userInfo.cart.length != 0" class="sircle bg-orange-color">{{ userStore.userInfo.cart.length }}</div>
         </div>
         <div class="user-avatar" @click="logout">
           <img src="@/assets/ava.jpg" alt="" />
@@ -62,7 +62,6 @@ const logout = () => {
   width: 20px;
   height: 20px;
   border-radius: 50%;
-  background: $orange-color;
   position: absolute;
   top: 4px;
   left: 12px;
@@ -81,7 +80,6 @@ const logout = () => {
   width: 40%;
   max-width: 400px;
   border: none;
-  background: $main-color;
   border-radius: 8px;
   font-size: 16px;
   line-height: 150%;

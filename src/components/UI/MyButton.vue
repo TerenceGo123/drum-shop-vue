@@ -1,6 +1,6 @@
 <template>
     <div>
-        <button class="my-btn"  :type="type"><slot></slot><img  v-if="ico != ''" :src='ico' alt="" style="margin-left: 8px;" ></button>
+        <button class="my-btn bg-orange-color text-orange-dark-color  "  :type="type"><slot></slot><img  v-if="ico != ''" :src='ico' alt="" style="margin-left: 8px;" ></button>
     </div>
 </template>
 
@@ -23,11 +23,9 @@ const props = defineProps({
     display: flex;
     justify-content: center;
     width: 100%;
-    background: $orange-color;
     padding: 12px 32px;
     border-radius: 8px;
     border: none;
-    color: $orange-dark-color;
     font-size: 20px;
     font-family: TTNormsPro-B;
     margin-bottom: 20px;

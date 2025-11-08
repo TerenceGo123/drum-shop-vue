@@ -1,6 +1,6 @@
 <template>
     <div>
-        <footer class="footer">
+        <footer class="footer bg-main-color">
           <img src="@/assets/DrumLogo.svg" alt="">
           <div class="footer__general">
             <p>ОБЩЕЕ</p>
@@ -30,12 +30,10 @@
 
 <style lang="scss" scoped>
 .footer {
-  background-color: $main-color;
   border-radius: 20px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-top: 40px;
   overflow: hidden;
   padding-left: 40px;
   &__drum {

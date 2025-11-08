@@ -52,7 +52,6 @@ const singIn = async () => {
 </script>
 
 <style lang="scss" scoped>
-@import '/src/assets/styles/authStyle.scss'
 
 
 </style>

@@ -1,13 +1,10 @@
 <template>
-  <div class="navbar">
+  <div class="navbar mb-8">
     <nav>
       <button
         v-for="category in categories"
         :key="category.id"
-        :class="{
-          'button-category': true,
-          active: drumStore.selectedCategory === category.id,
-        }"
+        class="button-category px-3 py-5 mr-3 rounded-lg last:mr-0 bg-main-color hover:bg-black/15 transition-all"
         @click="(event) => changeCategory(event, category.id)"
       >
         {{ category.title }}
@@ -17,9 +14,11 @@
 </template>
 
 <script setup>
-import { useDrumDataStore } from '@/stores/DrumData'
-import {ref, computed} from 'vue'
-const drumStore = useDrumDataStore()
+import { useDrumDataStore } from "@/stores/DrumData";
+import { useRoute } from "vue-router";
+
+const drumStore = useDrumDataStore();
+const router = useRoute();
 
 const props = defineProps({
   categories: {
@@ -31,30 +30,17 @@ const props = defineProps({
 const changeCategory = (category, categoryId) => {
   if (category.target.classList.contains("active")) {
     drumStore.selectedCategory = "";
+    category.target.classList.remove("active");
   } else {
-    drumStore.selectedCategory = categoryId
+    drumStore.selectedCategory = categoryId;
+    category.target.classList.add("active");
+    router.push(`/category/${categoryId}`);
   }
 };
 </script>
 
-<style lang="scss" scoped>
-.navbar {
-  margin-bottom: 32px;
-}
-
+<style>
 .active {
-  background: $orange-color !important;
-}
-
-.button-category {
-  background: $main-color;
-  padding: 12px 20px;
-  border: none;
-  margin-right: 12px;
-  border-radius: 8px;
-}
-
-.button-category:last-child {
-  margin-right: 0px;
+  background-color: #ffbd4a;
 }
 </style>

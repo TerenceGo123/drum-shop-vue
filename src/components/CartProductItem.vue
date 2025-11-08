@@ -1,8 +1,8 @@
 <template>
     <div>
-        <div class="item-cart" style="margin-bottom: 20px;" >
+        <div class="item-cart bg-main-color p-3 rounded-2xl mb-3" >
             <div class="item-cart-content">
-                <div class="item-cart-image-container">
+                <div class="item-cart-image-container bg-white">
                     <img class="item-cart__img" :src=item.img alt="item-cart-image">
                 </div>
                 <div class="item-cart-info">
@@ -24,21 +24,18 @@
                 <button class="item-cart-action__close-button" @click="removeItem(item)"><img src="@/assets/CloseIco.svg" alt=""></button>
                 <div class="item-cart-action-counter">
                     <button class="item-cart-action__minus-button" @click="minusItem(item)" style="margin-right: 8px;" ><img src="" alt=""><img src="../assets/minusIco.svg" alt=""></button>
-                    <p style="margin-right: 8px;" >{{ count }}</p>
-                    <button class="item-cart-action__minus-button" @click="plusItem"><img src="../assets/plusIco.svg" alt=""></button>
+                    <p style="margin-right: 8px;" >{{item.count}}</p>
+                    <button class="item-cart-action__minus-button" @click="item.count++"><img src="../assets/plusIco.svg" alt=""></button>
                 </div>
             </div>
         </div>
-        <hr>
     </div>
 </template>
 
 <script setup>
-import {ref} from 'vue';
 import { useUserDataStore } from '@/stores/UserData';
 const userStore = useUserDataStore() 
 
-// const {removeFromCart} = userStore 
 
 const props = defineProps({
     item: {
@@ -48,21 +45,16 @@ const props = defineProps({
 })
 
 
-const count = ref(1) 
-
 const removeItem = (it) => {
     userStore.userInfo.cart = userStore.userInfo.cart.filter(item => item != it)
 } 
 
 const minusItem = (it) => {
-    count.value--
-    if (count.value === 0) {
+    if(it.count == 1) {
         removeItem(it)
+        return
     }
-} 
-
-const plusItem = () => {
-    count.value++
+    it.count--
 } 
 
 
@@ -85,7 +77,6 @@ const plusItem = () => {
 
     &-image-container {
         width: 150px;
-        background: $main-color;
         border-radius: 8px;
         display: flex;
         justify-content: center;
@@ -136,7 +127,7 @@ const plusItem = () => {
        }
 
        &__info {
-            color: $dark-gray-color;
+            @apply text-dark-gray-color;
        }
     }
 
@@ -161,7 +152,7 @@ const plusItem = () => {
 }
 
 hr {
-    border-color: rgba($stroke-color, 0.3) ;
+    @apply border-stroke-color/3;
     margin-bottom: 20px; 
 
     :last-of-type {

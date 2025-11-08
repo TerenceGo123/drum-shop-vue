@@ -4,6 +4,9 @@ import SignIn from "@/pages/SignIn.vue";
 import Register from "@/pages/Register.vue";
 import { createRouter, createWebHistory } from "vue-router";
 import { useUserDataStore } from "@/stores/UserData";
+import ItemPage from "@/pages/ItemPage.vue";
+import CategoriesItems from "@/pages/CategoriesItems.vue";
+import Categories from "@/pages/Categories.vue";
 
 const routes = [
   {
@@ -34,6 +37,27 @@ const routes = [
     component: Register,
     meta: {
       auth: false
+    }
+  },
+  {
+    path: "/category",
+    component: Categories,
+    meta: {
+      auth: true
+    }
+  },  
+  {
+    path: "/category/:name",
+    component: CategoriesItems,
+    meta: {
+      auth: true
+    }
+  },
+  {
+    path: "/:id",
+    component: ItemPage,
+    meta: {
+      auth: true
     }
   },
 ];

@@ -1,19 +1,19 @@
 <template>
   <div class="app">
-    <div :class="{ container: true, 'container-auth': isAuthPage }">
+    <div :class="{ container: true, 'container-auth': isAuthPage }" class="bg-white">
       <header-menu
         v-if="!isAuthPage"
         @searchAndFilter="sortedOfCategory"
       ></header-menu>
       <navbar v-if="!isAuthPage" :categories="drumStore.categories"></navbar>
-      <router-view></router-view>
+      <router-view class="mb-10"></router-view>
       <my-footer v-if="!isAuthPage"></my-footer>
     </div>
   </div>
 </template>
 
 <script setup>
-import HeaderMenu from "@/components/Menu.vue";
+import HeaderMenu from "@/components/HeaderMenu.vue";
 import Navbar from "@/components/Navbar.vue";
 import MyFooter from "@/components/MyFooter.vue";
 import { useDrumDataStore } from '@/stores/DrumData'
@@ -40,36 +40,24 @@ const checkUser = async () => {
     }
 }
 
-
-// await drumStore.fetchDrumData();
-
 onMounted(async () => {
   await checkUser()
-  await drumStore.fetchDrumData()
-  console.log("ЗАГРУЗИЛИСЬ");
+  await drumStore.fetchDrumData() 
 })
 
 </script>
 
 <style lang="scss">
 * {
-  margin: 0;
-  padding: 0;
   box-sizing: border-box;
-  font-family: TTNormsPro-R;
 }
 
 html {
   font-size: 16px;
 }
 
-body {
-  background-color: $main-color;
-}
-
 button {
   border: none;
-  background: none;
   cursor: pointer;
 }
 
@@ -83,7 +71,6 @@ button {
   margin: 0 auto;
   padding: 40px;
   border-radius: 20px;
-  background: $main-white-color;
 
   &-auth {
     padding: 0px;

@@ -1,5 +1,5 @@
 <template>
-    <div class="cart-container">
+    <div>
         <cart-product-item v-for="item in items" :key="item.id" :item="item"></cart-product-item>
     </div>
 </template>
@@ -17,10 +17,5 @@ const props = defineProps({
 </script>
 
 <style lang="scss" scoped>
-
-
-
-
-
 
 </style>

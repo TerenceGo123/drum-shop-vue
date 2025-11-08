@@ -1,0 +1,118 @@
+@import "tailwindcss";
+
+
+@theme {
+    --color-main-color: #f4f4f4;
+    --color-stroke-color: #C7C7C7;
+    --color-dark-color: #121212;
+    --color-dark-gray-color: #323232;
+    --color-orange-color: #FFBD4A;
+    --color-orange-dark-color: #633F00;
+    --font-norms-b: "TTNormsPro-B";
+    --font-norms-r: "TTNormsPro-R";
+}
+
+
+
+
+
+/* GLOBAL */
+
+* {
+    @apply font-norms-r;
+}
+
+body {
+  @apply bg-main-color
+}
+
+.content {
+    @apply w-3/5 flex justify-center;
+}
+
+
+
+/* AUTH */
+
+
+.login {
+    @apply flex justify-between items-center;
+}
+
+.login-form {
+    @apply flex flex-col w-[45%];
+}
+
+.login-title {
+    @apply text-center mb-8 font-norms-b;
+}
+
+.login-input {
+    @apply bg-main-color border-stroke-color border border-solid py-2 px-5 rounded-lg mb-5 text-xl;
+}
+
+.login-input:last-child {
+    @apply mb-3;
+}
+
+.login-image-container {
+    @apply w-[38%];
+}
+
+.login-image-container img {
+    @apply w-full rounded-2xl;
+}
+
+.login-btn {
+    @apply bg-orange-color text-orange-dark-color py-3 px-8 rounded-lg border-none text-xl mb-5 font-norms-b;
+}
+
+.remember-me {
+    @apply flex items-center mb-8;
+}
+
+.remember-me-checkbox {
+    @apply accent-orange-color mr-3;
+}
+
+.remember-me-label {
+    @apply text-dark-gray-color;
+}
+
+.auth-prompt {
+    @apply text-center;
+}
+
+.auth-prompt__text {
+    @apply text-dark-gray-color mr-1 inline;
+}
+
+.auth-prompt__link {
+    @apply text-dark-gray-color;
+}
+
+.error-mesage {
+    @apply bg-orange-color/30 text-orange-dark-color text-xl p-2;
+}
+
+.loader {
+    @apply border-[5px] border-orange-color border-b-transparent rounded-full inline-block box-border w-12 h-12 animate-spin;
+}
+
+
+
+/* FONTS */
+
+@font-face {
+  font-family: "TTNormsPro-B";
+  src: url(@/assets/fonts/TTNormsPro-bold.ttf);
+}
+    
+
+@font-face  {
+  font-family: "TTNormsPro-R";
+  src: url(@/assets/fonts/TTNormsPro-regular.ttf);
+}
+
+
+

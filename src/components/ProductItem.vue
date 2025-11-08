@@ -1,39 +1,38 @@
 <template>
-  <div>
-    <div class="item">
-      <div class="button-bag-container">
-        <button class="button-bag">
+  <div class="item bg-main-color rounded-2xl py-5 cursor-pointer transition-all  hover:shadow-lg hover:shadow-orange-color/20 " @click="router.push(`/${item.id}`)">
+      <div class="button-bag-container flex justify-end px-2.5 mb-2 ">
+        <button class="button-bag transition-all">
           <img
             :src="item.isAdded ? activeIcon : defaultIcon"
             @click="addToCart(item)"
           />
         </button>
       </div>
-      <div class="img-container">
-        <img :src="item.img" alt="" />
+      <div class="image-container h-3/5 flex justify-center items-center mb-5">
+        <img :src="item.img" class="max-w-full max-h-full" alt="">
       </div>
-      <div class="info-container">
-        <p
-          :class="{ item__title: true, 'item__title-discount': item.discount }"
-        >
-          {{ item.title }}
-        </p>
-        <h3 class="item__old-price" v-if="item.discount">
-          {{ item.oldPrice }}
-        </h3>
-        <h2
-          :class="{ item__price: true, 'item__price-discount': item.discount }"
-        >
-          ${{ item.price }}
+      <div class="item-info px-3">
+        <div class="title-container h-14">
+          <h2 class="text-center">
+            {{ item.title }}
+          </h2>
+        </div>
+        <div class="oldPrice-container h-6">
+          <h3 class="line-through text-stroke-color text-center">
+            {{ item.oldPrice }}
+          </h3>
+        </div>
+        <h2 class=" text-center text-2xl font-norms-b!" :class="{'text-orange-color' : item.oldPrice} ">
+            ${{ item.price }}
         </h2>
       </div>
-    </div>
   </div>
 </template>
 
 <script setup>
 import { useUserDataStore } from '@/stores/UserData';
 import { useDrumDataStore } from '@/stores/DrumData'
+import router from '@/router';
 
 const userStore = useUserDataStore()
 const drumStore = useDrumDataStore()
@@ -75,76 +74,3 @@ const addToCart = (item) => {
   localStorage.setItem('userCarts', JSON.stringify(userCarts));
 }
 </script>
-
-<style lang="scss" scoped>
-.button-bag-container {
-  display: flex;
-  justify-content: end;
-  padding: 0 20px 0 20px;
-  width: 100%;
-}
-
-.button-bag {
-  background: none;
-  border: none;
-  cursor: pointer;
-}
-
-.item {
-  // height: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
-  background: $main-color;
-  padding: 20px 0 20px 0;
-  border-radius: 8px;
-  transition: all 0.3s ease;
-  &__title {
-    font-size: 16px;
-    line-height: 150%;
-    color: $dark-color;
-  }
-
-  &__title-discount {
-    font-size: 32px;
-    line-height: 120%;
-    color: $dark-gray-color;
-    font-family: TTNormsPro-B;
-  }
-
-  &__price {
-    font-family: TTNormsPro-B;
-    color: $dark-gray-color;
-  }
-
-  &__price-discount {
-    color: $orange-color;
-    font-size: 32px;
-  }
-
-  &:hover {
-    scale: 1.05;
-  }
-
-  &__old-price {
-    font-size: 20px;
-    text-decoration: line-through; // Зачеркиваем старую цену
-    color: $dark-gray-color;
-  }
-}
-
-.img-container {
-  width: 80%;
-  margin-bottom: 20px;
-  img {
-    width: 100%;
-  }
-}
-
-.info-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-</style>

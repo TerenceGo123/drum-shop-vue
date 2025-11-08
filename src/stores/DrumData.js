@@ -16,25 +16,41 @@ export const useDrumDataStore = defineStore("drumData", () => {
   const searchQuery = ref('') 
 
   const userStore = useUserDataStore() 
-
-  const fetchDrumData = async () => {
+  
+  const fetchDrumData = async (maxAttempts = 10, delay = 1000) => {
+  for (let attempt = 1; attempt <= maxAttempts; attempt++) {
     try {
       const response = await axios.get(url);
-      const serverItems = response.data.items;
+      // const serverItems = response.data.items;
 
-      // Обновляем isAdded на основе корзины пользователя
-      items.value = serverItems.map(item => ({
-        ...item,
-        isAdded: userStore.isProductInCart(item.id) // Проверяем, есть ли товар в корзине
-      }));
-
+      items.value = response.data.items
+      updateProductFlags()
       categories.value = response.data.categories;
+      console.log("Данные успешно загружены");
+      return; // Успех - выходим из функции
     } catch (err) {
-      console.error("Ошибка загрузки данных:", err);
+      console.error(`Попытка ${attempt}/${maxAttempts} не удалась:`, err.message);
+      
+      if (attempt === maxAttempts) {
+        console.error("Все попытки исчерпаны");
+        return;
+      }
+      
+      // Ждем перед следующей попыткой
+      await new Promise(resolve => setTimeout(resolve, delay));
     }
-  };
+  }
+};
+
+const updateProductFlags = () => {
+  items.value = items.value.map(item => ({
+    ...item,
+    isAdded: userStore.isProductInCart(item.id)
+  }))
+}
+
 
   return {
-    items, categories, contact, fetchDrumData, selectedCategory, searchQuery
+    items, categories, contact, selectedCategory, searchQuery, fetchDrumData, updateProductFlags
   }
 });
