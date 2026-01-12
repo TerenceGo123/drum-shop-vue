@@ -1,5 +1,5 @@
 <template>
-    <div v-if="userStore.userInfo.cart.length !== 0" class="cart">
+    <div v-if="userStore.userInfo.cart.length !== 0" class="cart mb-5">
         <h1 class="text-3xl font-bold mb-8">Корзина</h1>
         <div class="flex justify-between gap-6">
             <list-cart-items 
@@ -15,7 +15,7 @@
                     placeholder="ПРОМОКОД"
                 >
                 <div class="bg-gray-50 rounded-lg mb-6 p-5">
-                    <p class="mb-5">{{ cartCount }} шт</p>
+                    <p class="mb-5">{{ totalCount }} шт</p>
                     <div 
                         v-for="item in userStore.userInfo.cart" 
                         :key="item.id" 
@@ -39,10 +39,10 @@
         </div>
     </div>
     
-    <div v-else class="w-full h-[50vh] flex flex-col justify-center items-center">
+    <div v-else class="w-full flex flex-col justify-center items-center">
         <h1 class="text-dark-gray-color text-3xl mb-6">КОРЗИНА ПУСТА</h1>
         <img src="/ShoppingBagEmpty.svg" alt="" class="mb-6">
-        <my-button @click="$router.push('/')">ПЕРЕЙТИ К ПОКУПКАМ</my-button>
+        <my-button @click="$router.push('/')" class="mb-6">ПЕРЕЙТИ К ПОКУПКАМ</my-button>
     </div>
 </template>
 
@@ -55,20 +55,16 @@ import MyButton from '@/components/UI/MyButton.vue';
 const userStore = useUserDataStore();
 
 const summ = computed(() => {
-    let sum = 0;
-    userStore.userInfo.cart.forEach((el) => {
-        sum += el.count * el.price;
-    });
-    return (sum + 3).toFixed(2);
+    const total = userStore.userInfo.cart.reduce((sum, item) => 
+        sum + (item.count * item.price), 0
+    );
+    return (total + 3).toFixed(2)
 });
 
-const cartCount = computed(() => {
-    let count = 0;
-    userStore.userInfo.cart.forEach((el) => {
-        count += el.count;
-    });
-    return count;
+const totalCount = computed(() => {
+    return userStore.userInfo.cart.reduce((total, item) => total + item.count, 0)
 });
+
 </script>
 
 <style lang="scss" scoped>

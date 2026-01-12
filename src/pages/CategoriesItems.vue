@@ -1,6 +1,6 @@
 <template>
     <div>
-        <list-items :items="sortedOfCategory" ></list-items>
+        <list-items :items="drumStore.items.filter(item => item.category === currentCategory)" ></list-items>
     </div>
 </template>
 
@@ -15,14 +15,7 @@ const drumStore = useDrumDataStore();
 
 const currentCategory = router.params.name
 
-const sortedOfCategory = computed(() => {
-    // if (drumStore.selectedCategory === "") {
-    //     return drumStore.items;
-    // } else {
-    //     return drumStore.items.filter(item => item.category === drumStore.selectedCategory);
-    // }
-    return drumStore.items.filter(item => item.category === currentCategory)
-});
+
 </script>
 
 <style lang="scss" scoped>

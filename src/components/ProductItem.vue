@@ -1,5 +1,5 @@
 <template>
-  <div class="item bg-main-color rounded-2xl py-5 cursor-pointer transition-all  hover:shadow-lg hover:shadow-orange-color/20 " @click="router.push(`/${item.id}`)">
+  <div class="item bg-main-color rounded-2xl py-5 cursor-pointer transition-all  hover:shadow-lg hover:shadow-orange-color/20 ">
       <div class="button-bag-container flex justify-end px-2.5 mb-2 ">
         <button class="button-bag transition-all">
           <img
@@ -13,7 +13,7 @@
       </div>
       <div class="item-info px-3">
         <div class="title-container h-14">
-          <h2 class="text-center">
+          <h2 class="text-center hover:text-orange-color" @click="router.push(`/category/${item.category}/${item.id}`)" >
             {{ item.title }}
           </h2>
         </div>
@@ -51,26 +51,22 @@ const activeIcon = "/ShoppingBagActive.svg"
 
 
 const addToCart = (item) => {
-  const cart = [...userStore.userInfo.cart]; // Создаем копию массива
-  const itemIndex = cart.findIndex((cartItem) => cartItem.id === item.id); // Сравниваем по id
+  const itemIndex = userStore.userInfo.cart.findIndex(cartItem => cartItem.id === item.id);
   
   if (itemIndex !== -1) {
-    // Удаляем товар из корзины
-    cart.splice(itemIndex, 1);
+    userStore.userInfo.cart.splice(itemIndex, 1);
     console.log("Товар удален из корзины");
   } else {
-    // Добавляем товар в корзину
-    cart.push({...item}); // Создаем копию объекта
+    userStore.userInfo.cart.push({...item});
     console.log("Товар добавлен в корзину");
   }
   
-  // Обновляем корзину и состояние
-  userStore.userInfo.cart = [...cart];
   item.isAdded = !item.isAdded;
 
+  // Обновляем localStorage
   const userCarts = JSON.parse(localStorage.getItem('userCarts'))
   const currentUser = userCarts.findIndex(user => user.userId === userStore.userInfo.userId)
-  userCarts[currentUser].cart = [...cart] 
+  userCarts[currentUser].cart = userStore.userInfo.cart;
   localStorage.setItem('userCarts', JSON.stringify(userCarts));
 }
 </script>

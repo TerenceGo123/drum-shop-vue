@@ -6,9 +6,9 @@
                 <h1 class="login-title">ВХОД</h1>
                 <input type="text" placeholder="Почта" v-model="login" class="login-input">
                 <input type="password" placeholder="Пароль" v-model="password" class="login-input">
-                <div class="remember-me">
-                    <input type="checkbox" id="remember-me" class="remember-me-checkbox">
-                    <label for="remember-me" class="remember-me-label">Запомнить Меня</label>
+                <div class="remember-me ">
+                    <input type="checkbox" id="remember-me" class="remember-me-checkbox" v-model="userDataStore.rememberMe">
+                    <label for="remember-me" class="remember-me-label" >Запомнить Меня</label>
                 </div>
                 <div v-if="userDataStore.loader" style="text-align: center;">
                     <span  class="loader"></span>
@@ -21,7 +21,7 @@
             </form>
         </div>
         
-        <div class="login-image-container">
+        <div class="login-image-container max-lg:hidden">
             <img src="/SingInImage.png" alt="Изображение для входа" class="login-image">
         </div>
     </div> 

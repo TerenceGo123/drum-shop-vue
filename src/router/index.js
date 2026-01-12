@@ -3,11 +3,10 @@ import Cart from "@/pages/Cart";
 import SignIn from "@/pages/SignIn.vue";
 import Register from "@/pages/Register.vue";
 import { createRouter, createWebHistory } from "vue-router";
-import { useUserDataStore } from "@/stores/UserData";
 import ItemPage from "@/pages/ItemPage.vue";
 import CategoriesItems from "@/pages/CategoriesItems.vue";
 import Categories from "@/pages/Categories.vue";
-
+import SortedSearchPage from "@/pages/SortedSearchPage.vue"
 const routes = [
   {
     path: "/",
@@ -54,11 +53,18 @@ const routes = [
     }
   },
   {
-    path: "/:id",
+    path: "/category/:name/:id",
     component: ItemPage,
     meta: {
       auth: true
-    }
+    },
+  },
+  {
+    path: "/search",
+    component: SortedSearchPage,
+    meta: {
+      auth: true
+    },
   },
 ];
 
@@ -68,17 +74,17 @@ const router = createRouter({
 });
 
 
-router.beforeEach((to, from, next) => {
-  const userDataStore = useUserDataStore()
-  if(to.meta.auth && !userDataStore.userInfo.token) {
-    next('/sign')
-  }else if (!to.meta.auth && userDataStore.userInfo.token){
-    next('/')
-  }
-  else {
-    next()
-  }
+// router.beforeEach((to, from, next) => {
+//   const userDataStore = useUserDataStore()
+//   if(to.meta.auth && !userDataStore.userInfo.token) {
+//     next('/sign')
+//   }else if (!to.meta.auth && userDataStore.userInfo.token){
+//     next('/')
+//   }
+//   else {
+//     next()
+//   }
   
-})
+// })
 
 export default router;

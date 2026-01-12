@@ -1,6 +1,6 @@
 import axios from "axios";
 import { defineStore } from "pinia";
-import { ref } from "vue";
+import { ref, computed } from "vue";
 import { useUserDataStore } from "./UserData";
 
 // const url = "https://api.npoint.io/82881f4b8b9b8c862f59";
@@ -21,7 +21,6 @@ export const useDrumDataStore = defineStore("drumData", () => {
   for (let attempt = 1; attempt <= maxAttempts; attempt++) {
     try {
       const response = await axios.get(url);
-      // const serverItems = response.data.items;
 
       items.value = response.data.items
       updateProductFlags()
@@ -48,6 +47,8 @@ const updateProductFlags = () => {
     isAdded: userStore.isProductInCart(item.id)
   }))
 }
+
+
 
 
   return {

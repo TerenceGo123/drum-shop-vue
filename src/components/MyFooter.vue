@@ -39,5 +39,10 @@
   &__drum {
     width: 35%;
   }
+
+  p:hover {
+    color: #FFBD4A;
+    cursor: pointer
+  }
 }
 </style>

@@ -1,12 +1,14 @@
 <template>
-  <div class="app">
-    <div :class="{ container: true, 'container-auth': isAuthPage }" class="bg-white">
+  <div class="app max-md:py-5!">
+    <div :class="{ 'content-container': true, 'content-container-auth': isAuthPage }" class="bg-white max-md:p-5! max-md:w-[95%]!">
       <header-menu
         v-if="!isAuthPage"
         @searchAndFilter="sortedOfCategory"
       ></header-menu>
       <navbar v-if="!isAuthPage" :categories="drumStore.categories"></navbar>
-      <router-view class="mb-10"></router-view>
+      <main>
+        <router-view ></router-view>
+      </main>
       <my-footer v-if="!isAuthPage"></my-footer>
     </div>
   </div>
@@ -18,7 +20,7 @@ import Navbar from "@/components/Navbar.vue";
 import MyFooter from "@/components/MyFooter.vue";
 import { useDrumDataStore } from '@/stores/DrumData'
 import { useUserDataStore } from "./stores/UserData";
-import {computed, onMounted } from 'vue';
+import {computed, onMounted, watch } from 'vue';
 import { useRoute } from "vue-router";
 
 const drumStore = useDrumDataStore()
@@ -42,7 +44,13 @@ const checkUser = async () => {
 
 onMounted(async () => {
   await checkUser()
-  await drumStore.fetchDrumData() 
+  console.log(isAuthPage.value);
+  setTimeout(async () => {
+    if(!isAuthPage.value ) {
+      await drumStore.fetchDrumData()
+    }
+  }, 1000)
+
 })
 
 </script>
@@ -64,9 +72,10 @@ button {
 .app {
   width: 100%;
   padding: 40px 0 40px 0;
+  margin: auto;
 }
 
-.container {
+.content-container {
   width: 90%;
   margin: 0 auto;
   padding: 40px;

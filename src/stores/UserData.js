@@ -20,6 +20,7 @@ export const useUserDataStore = defineStore('userData', () => {
 
     const error = ref('') 
     const loader = ref(false)
+    const rememberMe = ref(false)
     const auth = async (payload, type) => {
         const stringUrl = type === 'signUp' ? 'signUp' : 'signInWithPassword'
         error.value = ''
@@ -37,12 +38,14 @@ export const useUserDataStore = defineStore('userData', () => {
                 expirenIn: response.data.expiresIn,
                 cart: []
             }
-
-            localStorage.setItem('userInfoStorage', JSON.stringify({token: userInfo.value.token, refreshToken: userInfo.value.refreshToken}))
+            if(rememberMe.value) {
+                localStorage.setItem('userInfoStorage', JSON.stringify({token: userInfo.value.token, refreshToken: userInfo.value.refreshToken}))
+            }
         }catch(err) {
+            console.log(err.response.data.error.message);
             switch (err.response.data.error.message) {
                 case 'EMAIL_EXISTS':
-                    error.value = 'Email already exists'
+                    error.value = 'Этот email уже используется'
                     break
                 case 'OPERATION_NOT_ALLOWED':
                     error.value = 'Operation not allowed'
@@ -51,16 +54,19 @@ export const useUserDataStore = defineStore('userData', () => {
                     error.value = 'Too many attempts, try later'
                     break
                 case 'INVALID_LOGIN_CREDENTIALS':
-                    error.value = 'Invalid login credentials'
+                    error.value = 'Неверные учетные данные для входа в систему'
                     break
                 case 'INVALID_EMAIL':
-                    error.value = 'Invalid email'
+                    error.value = 'Неправильный email'
                     break
                 case 'MISSING_PASSWORD':
-                    error.value = 'Missing password'
+                    error.value = 'Введите пароль'
+                    break
+                case 'WEAK_PASSWORD : Password should be at least 6 characters':
+                    error.value = 'Пароль должен содержать минимум 6 символов'
                     break
                 default: 
-                    error.value = 'Error'
+                    error.value = 'Ошибка'
                     break
             }
         }
@@ -142,7 +148,7 @@ export const useUserDataStore = defineStore('userData', () => {
     } 
 
     return {
-        auth, userInfo, error, loader, fetchCart, logout, isProductInCart, fetchUserData
+        auth, userInfo, error, loader, rememberMe, fetchCart, logout, isProductInCart, fetchUserData
     }
 })
 

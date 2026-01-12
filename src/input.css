@@ -10,6 +10,7 @@
     --color-orange-dark-color: #633F00;
     --font-norms-b: "TTNormsPro-B";
     --font-norms-r: "TTNormsPro-R";
+    --inset-shadow-bottom-black: inset 0px -153px 68px rgba(0, 0, 0, 0.8); 
 }
 
 
@@ -32,6 +33,20 @@ body {
 
 
 
+.upDownItem {
+    @apply cursor-pointer flex justify-center w-full hover:bg-main-color rounded-2xl py-2 mb-1;
+}
+
+
+.home-category {
+    @apply bg-main-color rounded-2xl flex justify-center items-center 
+}
+
+.home-category__title {
+    @apply text-4xl font-norms-b! text-center
+}
+
+
 /* AUTH */
 
 
@@ -44,7 +59,7 @@ body {
 }
 
 .login-title {
-    @apply text-center mb-8 font-norms-b;
+    @apply text-center mb-8 font-norms-b text-4xl;
 }
 
 .login-input {
@@ -68,7 +83,7 @@ body {
 }
 
 .remember-me {
-    @apply flex items-center mb-8;
+    @apply flex items-center mb-8 px-1 w-full;
 }
 
 .remember-me-checkbox {
@@ -88,7 +103,7 @@ body {
 }
 
 .auth-prompt__link {
-    @apply text-dark-gray-color;
+    @apply text-dark-gray-color underline;
 }
 
 .error-mesage {

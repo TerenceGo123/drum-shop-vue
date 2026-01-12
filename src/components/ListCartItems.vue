@@ -9,10 +9,11 @@ import CartProductItem from './CartProductItem.vue';
 
 const props = defineProps({
   items: {
-    type: Object,
+    type: Array,
     require: true
   }
 })
+
 
 </script>
 
