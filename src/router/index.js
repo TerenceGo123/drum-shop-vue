@@ -14,6 +14,7 @@ const routes = [
     meta: {
       auth: true
     }
+    
   },
   {
     path: "/cart",
@@ -71,6 +72,16 @@ const routes = [
 const router = createRouter({
   routes,
   history: createWebHistory(),
+
+  scrollBehavior(to, from, savedPosition) {
+    // Всегда скроллить наверх при переходе
+    if (savedPosition) {
+      return savedPosition
+    }
+    
+    // Иначе скроллить наверх
+    return { top: 0 }
+  }
 });
 
 

@@ -2,15 +2,19 @@
   <div>
     <header class="header">
       <router-link class="flex items-center" to="/"><img src="@/assets/DrumLogo.svg" /></router-link>
-      <div class="relative w-2/5 max-w-[400px]">
-        <input
-          type="text"
-          v-model="drumStore.searchQuery"
-          placeholder="Поиск..."
-          class="input bg-main-color"
-          @focus="searchFocus = true" @blur="searchFocus = false"
-          @keyup.enter="handleSearch()"
-        />
+      
+      <div class="relative w-2/5 max-w-[400px] ">
+        <div class="flex bg-main-color items-center px-5 py-3 rounded-lg">
+          <input
+            type="text"
+            v-model="drumStore.searchQuery"
+            placeholder="Поиск..."
+            class="input"
+            @focus="searchFocus = true" @blur="searchFocus = false"
+            @keyup.enter="handleSearch()"
+          />
+          <img class="w-6 h-6 cursor-pointer hover:scale-105" src="/ICONS/Huge-icon.svg" alt="" @click="handleSearch() ">
+        </div>
         <transition
             name="fade"
             enter-active-class="transition duration-300 ease-out"
@@ -20,7 +24,7 @@
             leave-from-class="opacity-100"
             leave-to-class="transform opacity-0"
           >
-        <div class=" absolute top-15 w-full  rounded-lg bg-main-color p-2 shadow-md" v-if="drumStore.searchQuery != '' && searchFocus"  >
+        <div class=" z-40 absolute top-15 w-full  rounded-lg bg-main-color p-1.5 shadow-md" v-if="drumStore.searchQuery != '' && searchFocus"  >
           <div v-for="item in sortedSearch" :key="item.id" class="flex justify-between mb-2 last:m-0 bg-white p-2 rounded-lg hover:bg-black/5 transition-all cursor-pointer" @mousedown="router.push(`/category/${item.category}/${item.id}`)" >
             <div class="w-3/10 ">
               <img :src="item.img" alt=""  class="w-full">
@@ -41,14 +45,14 @@
         </transition>
       </div>
       <div class="user-action">
-        <div class="cart-container cursor-pointer z-20"   @click="$router.push('/cart')">
+        <div class="cart-container cursor-pointer z-20 hover:scale-[103%]"   @click="$router.push('/cart')">
           <button  class="button-cart">
-            <img src="/ShoppingBag.svg"  />
+            <img src="/ICONS/ShoppingBag.svg"  />
           </button>
           <div v-show="userStore.userInfo.cart.length != 0" class="sircle bg-orange-color">{{ userStore.userInfo.cart.length }}</div>
         </div>
         <div class="relative">
-          <div class="user-avatar z-20 relative "  tabindex="0" @focus="userUpDownOpen = true" @blur="userUpDownOpen = false">
+          <div class="user-avatar z-20 relative"  tabindex="0" @focus="userUpDownOpen = true" @blur="userUpDownOpen = false">
             <img src="@/assets/ava.jpg" alt="" />
           </div>
 
@@ -62,36 +66,36 @@
             leave-from-class="opacity-100"
             leave-to-class="transform opacity-0"
           >
-          <div v-if="userUpDownOpen" class="upDown absolute  w-60 z-10 bg-main-color right-0  top-16  rounded-2xl p-2">
+          <div v-if="userUpDownOpen" class="upDown absolute  w-60 z-10 bg-main-color right-0  top-16  rounded-2xl p-1.5">
             <div class="w-full h-full bg-white rounded-2xl p-2 ">
               <div class=" mb-2">
                 <p class="text-2xl font-norms-b! text-orange-color text-center mb-2">АЛЕКСАНДР<br>ТОКАРЕВ</p>
                 <hr class=" border-stroke-color">
               </div>
-              <div class="upDownItem ">
-                <div class=" w-3/10 ">
-                  <img src="/ShoppingBag.svg" class="mx-auto"/>
+              <div class="upDownItem">
+                <div class="mr-3">
+                  <img src="/ICONS/User.svg" class="mx-auto scale-125"/>
                 </div>
-                <p class="text-xl text-dark-gray-color w-6/10">Профиль</p>
+                <p class="text-xl text-dark-gray-color w-5/10">Профиль</p>
               </div>
               <div class=" upDownItem">
-                <div class=" w-3/10">
-                  <img src="/ShoppingBag.svg" class="mx-auto"/>
+                <div class="mr-3" >
+                  <img src="/ICONS/Settings.svg" class="mx-auto scale-125"/>
                 </div>
-                <p class="text-xl text-dark-gray-color w-6/10">О нас</p>
+                <p class="text-xl text-dark-gray-color w-5/10">Настройки</p>
               </div>
               <div class=" upDownItem mb-2!">
-                <div class=" w-3/10">
-                  <img src="/ShoppingBag.svg" class="mx-auto"/>
+                <div class="mr-3">
+                  <img src="/ICONS/Info.svg" class="mx-auto scale-125"/>
                 </div>
-                <p class="text-xl text-dark-gray-color w-6/10">Помощь</p>
+                <p class="text-xl text-dark-gray-color w-5/10">Помощь</p>
               </div>
               <hr class=" border-stroke-color mb-2">
               <div class="upDownItem hover:bg-white!">
-                <div class=" w-3/10">
-                  <img src="/ShoppingBag.svg" class="mx-auto"/>
+                <div class="mr-3">
+                  <img src="/ICONS/Exit.svg" class="mx-auto scale-125"/>
                 </div>
-                <p class="text-xl text-red-600 w-6/10 hover:text-red-500" @click="logout">Выход</p>
+                <p class="text-xl text-red-600 w-5/10 hover:text-red-500" @click="logout">Выход</p>
               </div>
             </div>
           </div>
@@ -128,6 +132,7 @@ const sortedSearch = computed(() => {
 
 
 const handleSearch = () => {
+  if (!drumStore.searchQuery) return
   router.push({
     path: '/search',
     query: {
@@ -174,10 +179,8 @@ const logout = () => {
 }
 
 .input {
-  padding: 12px 20px;
   width: 100%;
   border: none;
-  border-radius: 8px;
   font-size: 16px;
   line-height: 150%;
   outline: none;
@@ -194,6 +197,7 @@ const logout = () => {
   height: 50px;
   border-radius: 50%;
   overflow: hidden;
+  cursor: pointer;
 }
 
 .user-avatar img {

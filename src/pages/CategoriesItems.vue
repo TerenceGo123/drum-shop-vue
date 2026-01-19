@@ -1,5 +1,7 @@
 <template>
     <div>
+        <p>Категория:</p>
+        <my-title>{{ currentCategory }}</my-title>
         <list-items :items="drumStore.items.filter(item => item.category === currentCategory)" ></list-items>
     </div>
 </template>
@@ -9,6 +11,7 @@ import { useDrumDataStore } from '@/stores/DrumData';
 import { computed } from 'vue';
 import ListItems from '@/components/ListItems.vue';
 import { useRoute } from 'vue-router';
+import MyTitle from '@/components/UI/MyTitle.vue';
 
 const router = useRoute() 
 const drumStore = useDrumDataStore();

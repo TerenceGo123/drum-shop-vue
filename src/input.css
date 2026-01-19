@@ -27,6 +27,10 @@ body {
   @apply bg-main-color
 }
 
+.title {
+    @apply text-3xl font-norms-b  text-dark-gray-color 
+}
+
 .content {
     @apply w-3/5 flex justify-center;
 }
@@ -34,16 +38,16 @@ body {
 
 
 .upDownItem {
-    @apply cursor-pointer flex justify-center w-full hover:bg-main-color rounded-2xl py-2 mb-1;
+    @apply cursor-pointer flex justify-center items-center w-full hover:bg-main-color rounded-2xl py-2 mb-1;
 }
 
 
 .home-category {
-    @apply bg-main-color rounded-2xl flex justify-center items-center 
+    @apply bg-main-color rounded-2xl flex justify-center transition-all grayscale-75 hover:grayscale-0 cursor-pointer hover:scale-[100.5%]
 }
 
 .home-category__title {
-    @apply text-4xl font-norms-b! text-center
+    @apply text-4xl font-norms-b! text-center text-white  transition-all text-shadow-lg/50 group-hover:text-orange-color group-hover:text-shadow-dark-gray-color
 }
 
 

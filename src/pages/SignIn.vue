@@ -1,7 +1,11 @@
 <template>
     <div class="login" @submit.prevent="handleSubmit">
         <div class="content">
+            
             <form class="login-form">
+                <div class=" bg-orange-color text-orange-dark-color mb-3 p-2 text-lg">
+                    <p>LOGIN: presentor@mail.com | PASSWORD: presentor</p>
+                </div>
                 <p class="error-mesage" v-if="userDataStore.error" >{{ userDataStore.error }}</p>
                 <h1 class="login-title">ВХОД</h1>
                 <input type="text" placeholder="Почта" v-model="login" class="login-input">
@@ -13,7 +17,7 @@
                 <div v-if="userDataStore.loader" style="text-align: center;">
                     <span  class="loader"></span>
                 </div>
-                <my-button v-else @click="singIn" :type="'submit'" :ico="'/Enter.svg'" >ВОЙТИ</my-button>
+                <my-button class="mb-3" v-else @click="singIn" :type="'submit'" :ico="'/Enter.svg'" >ВОЙТИ</my-button>
                 <div class="auth-prompt">
                     <p class="auth-prompt__text">Нет аккаунта?</p>
                     <router-link class="auth-prompt__link" to="/reg">Зарегистрироваться</router-link>

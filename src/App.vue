@@ -4,8 +4,9 @@
       <header-menu
         v-if="!isAuthPage"
         @searchAndFilter="sortedOfCategory"
+        
       ></header-menu>
-      <navbar v-if="!isAuthPage" :categories="drumStore.categories"></navbar>
+      <!-- <navbar v-if="!isAuthPage" :categories="drumStore.categories"></navbar> -->
       <main>
         <router-view ></router-view>
       </main>
@@ -20,7 +21,7 @@ import Navbar from "@/components/Navbar.vue";
 import MyFooter from "@/components/MyFooter.vue";
 import { useDrumDataStore } from '@/stores/DrumData'
 import { useUserDataStore } from "./stores/UserData";
-import {computed, onMounted, watch } from 'vue';
+import {computed, onMounted } from 'vue';
 import { useRoute } from "vue-router";
 
 const drumStore = useDrumDataStore()

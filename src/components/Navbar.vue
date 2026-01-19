@@ -1,26 +1,15 @@
 <template>
   <div class="navbar mb-8 ">
-    <nav class=" ">
-      <button
-        class="button-category px-3 py-3 mr-3 rounded-lg last:mr-0 bg-orange-color transition-colors hover:bg-radial hover:from-orange-color  hover:to-orange-400/50  w-1/10"
-        @click="router.push('/category')"
-      >КАТАЛОГ
-      </button>
-      <!-- <button
-        class="button-category px-3 py-3 mr-3 rounded-lg last:mr-0 bg-main-color hover:bg-black/15 transition-all w-1/10"
-      >АКЦИИ
-      </button>
-      <button
-        class="button-category px-3 py-3 mr-3 rounded-lg last:mr-0 bg-main-color hover:bg-black/15 transition-all w-1/10"
-      >О НАС
-      </button> -->
-    </nav>
+    <div class="w-1/7">
+      <MyButton :ico="'/ICONS/Bar.svg'">КАТАЛОГ</MyButton>
+    </div>
   </div>
 </template>
 
 <script setup>
 import { useDrumDataStore } from "@/stores/DrumData";
 import { useRouter } from "vue-router";
+import MyButton from "./UI/MyButton.vue";
 
 const drumStore = useDrumDataStore();
 const router = useRouter();

@@ -28,5 +28,6 @@ const props = defineProps({
     border: none;
     font-size: 20px;
     font-family: TTNormsPro-B;
+    text-transform: uppercase;
 }
 </style>

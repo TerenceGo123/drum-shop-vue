@@ -15,7 +15,7 @@
                 <div v-if="userDataStore.loader" style="text-align: center;">
                     <span  class="loader"></span>
                 </div>
-                <my-button v-else @click="singUp" :type="'submit'" >ЗАРЕГИСТРИРОВАТЬСЯ</my-button>
+                <my-button class="mb-3" v-else @click="singUp" :type="'submit'" >ЗАРЕГИСТРИРОВАТЬСЯ</my-button>
                 <div class="auth-prompt">
                     <p class="auth-prompt__text">Есть аккаунт?</p>
                     <router-link class="auth-prompt__link" to="/sign" >Войти</router-link>

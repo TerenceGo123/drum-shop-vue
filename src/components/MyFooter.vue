@@ -2,20 +2,23 @@
     <div>
         <footer class="footer bg-main-color">
           <img src="@/assets/DrumLogo.svg" alt="">
-          <div class="footer__general">
-            <p>ОБЩЕЕ</p>
-            <p>ГЛАВНАЯ</p>
-            <p>О НАС</p>
-          </div>
-          <div class="footer__categories">
-            <p>БАРАБАНЫ</p>
-            <p>ПАЛОЧКИ</p>
-            <p>ПЕДАЛИ</p>
-          </div>
-          <div class="footer__contacts">
-            <p>КОНТАКТЫ</p>
-            <p>КРАСНОДАР, УЛ КРАСНАЯ, 82 /1</p>
-            <p>+7 123 456 78 90</p>
+          <div class="flex justify-between w-1/3">
+            <div class="footer__general ">
+              <p class="font-bold">ОБЩЕЕ</p>
+              <p>ГЛАВНАЯ</p>
+              <p>О НАС</p>
+            </div>
+            <div class="footer__categories">
+              <p class="font-bold">КАТЕГОРИИ</p>
+              <p>БАРАБАНЫ</p>
+              <p>ПАЛОЧКИ</p>
+              <p>ПЕДАЛИ</p>
+            </div>
+            <div class="footer__contacts">
+              <p class="font-bold">КОНТАКТЫ</p>
+              <p>КРАСНОДАР, УЛ КРАСНАЯ, 82 /1</p>
+              <p>+7 123 456 78 90</p>
+            </div>
           </div>
           <img class="footer__drum" src="@/assets/footerDrum.png" alt="">
       </footer>
@@ -40,7 +43,7 @@
     width: 35%;
   }
 
-  p:hover {
+  p:hover:not(.font-bold) {
     color: #FFBD4A;
     cursor: pointer
   }

@@ -1,6 +1,6 @@
 <template>
     <div v-if="userStore.userInfo.cart.length !== 0" class="cart mb-5">
-        <h1 class="text-3xl font-bold mb-8">Корзина</h1>
+        <my-title>Корзина</my-title>
         <div class="flex justify-between gap-6">
             <list-cart-items 
                 :items="userStore.userInfo.cart" 
@@ -11,6 +11,7 @@
                 <h2 class="text-dark-gray-color text-2xl font-bold mb-6">ОПЛАТА</h2>
                 <input 
                     type="text" 
+                    v-model="promo"
                     class="w-full bg-gray-50 px-5 py-3 rounded-lg border-none text-base outline-none mb-6"
                     placeholder="ПРОМОКОД"
                 >
@@ -34,7 +35,7 @@
                         <p>${{ summ }}</p>
                     </div>
                 </div>
-                <my-button :ico="'/CreditCard.svg'">ОПЛАТИТЬ</my-button>
+                <my-button :ico="'/ICONS/CreditCard.svg'">ОПЛАТИТЬ</my-button>
             </div>
         </div>
     </div>
@@ -51,8 +52,10 @@ import ListCartItems from '@/components/ListCartItems.vue';
 import { useUserDataStore } from '@/stores/UserData';
 import { computed } from 'vue';
 import MyButton from '@/components/UI/MyButton.vue';
+import MyTitle from '@/components/UI/MyTitle.vue';
 
 const userStore = useUserDataStore();
+const promo = ref()
 
 const summ = computed(() => {
     const total = userStore.userInfo.cart.reduce((sum, item) => 

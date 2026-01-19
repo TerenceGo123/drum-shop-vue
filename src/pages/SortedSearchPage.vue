@@ -1,8 +1,8 @@
 <template>
     <div>
         <div class="mb-5">
-            <h2 class="inline text-2xl">Вот что найдено по запросу: </h2>
-            <h2 class="inline text-3xl font-norms-b! ">{{ route.query.q }}</h2>
+            <p>Вот что найдено по запросу:</p>
+            <my-title>{{ route.query.q }}</my-title>
         </div>
         <list-items :items="sortedSearch()">
         </list-items>
@@ -11,6 +11,7 @@
 
 <script setup>
 import ListItems from '@/components/ListItems.vue';
+import MyTitle from '@/components/UI/MyTitle.vue';
 import { useDrumDataStore } from '@/stores/DrumData';
 import { useRoute } from 'vue-router';
 

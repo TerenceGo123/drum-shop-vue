@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div class="item-cart bg-main-color p-3 rounded-2xl mb-3" >
+        <div class="item-cart bg-main-color p-2 rounded-2xl mb-3" >
             <div class="item-cart-content">
                 <div class="item-cart-image-container bg-white">
                     <img class="item-cart__img" :src=item.img alt="item-cart-image">
