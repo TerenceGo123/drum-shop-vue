@@ -1,23 +1,24 @@
 <template>
-  <div class="item bg-main-color rounded-2xl py-5 cursor-pointer transition-all  hover:shadow-lg hover:shadow-orange-color/20 " @click="router.push(`/category/${item.category}/${item.id}`)">
-      <div class="button-bag-container flex justify-end px-2.5 mb-2 ">
-        <button class="button-bag transition-all">
+  <div class="item bg-main-color rounded-2xl py-5 cursor-pointer transition-all  hover:shadow-lg hover:shadow-orange-color/20 max-sm:py-3" @click="router.push(`/category/${item.category}/${item.id}`)">
+      <div class="button-bag-container flex justify-end px-2.5 mb-2 max-md:mb-1 max-sm:px-1 ">
+        <button class="button-bag transition-all ">
           <img
             :src="item.isAdded ? activeIcon : defaultIcon"
             @click.stop="addToCart(item)"
+            class="max-sm:w-4/5"
           />
         </button>
       </div>
-      <div class="image-container h-3/5 flex justify-center items-center mb-5">
+      <div class="image-container h-3/5 flex justify-center items-center mb-5 max-md:h-1/2 max-sm:mb-2">
         <img :src="item.img" class="max-w-full max-h-full" alt="">
       </div>
       <div class="item-info px-3">
         <div class="title-container">
-          <h2 class="text-center truncate"  >
+          <h2 class="text-center truncate max-md:text-sm"  >
             {{ item.title }}
           </h2>
         </div>
-        <div class="text-center mb-2">
+        <div class="text-center mb-2 max-md:mb-1">
           <div class="rating-mini">
               <span class="star-active"></span>	
               <span class="star-active"></span>    
@@ -27,11 +28,11 @@
           </div>
         </div>
         <div class="oldPrice-container">
-          <h3 class="line-through text-stroke-color text-center">
+          <h3 class="line-through text-stroke-color text-center max-md:text-sm">
             {{ item.oldPrice }}
           </h3>
         </div>
-        <h2 class=" text-center text-2xl font-norms-b!" :class="{'text-orange-color' : item.oldPrice} ">
+        <h2 class=" text-center text-2xl font-norms-b! max-md:text-xl" :class="{'text-orange-color' : item.oldPrice} ">
             ${{ item.price }}
         </h2>
       </div>

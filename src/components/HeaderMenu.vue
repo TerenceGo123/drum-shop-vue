@@ -1,19 +1,19 @@
 <template>
   <div>
-    <header class="header">
-      <router-link class="flex items-center" to="/"><img src="@/assets/DrumLogo.svg" /></router-link>
+    <header class="header max-md:mb-4! flex items-center">
+      <router-link class=" w-1/20 max-sm:w-1/7" to="/"><img src="@/assets/DrumLogo.svg" class="" /></router-link>
       
-      <div class="relative w-2/5 max-w-[400px] ">
-        <div class="flex bg-main-color items-center px-5 py-3 rounded-lg">
+      <div class="relative w-2/5 max-w-[450px] max-md:w-2/5 max-sm:w-3/5">
+        <div class="flex bg-main-color items-center px-5 py-3 rounded-lg max-md:px-2 max-md:py-2 max-sm:px-1.5 max-sm:py-1 ">
           <input
             type="text"
             v-model="drumStore.searchQuery"
             placeholder="Поиск..."
-            class="input"
+            class="input max-sm:text-xs! "
             @focus="searchFocus = true" @blur="searchFocus = false"
             @keyup.enter="handleSearch()"
           />
-          <img class="w-6 h-6 cursor-pointer hover:scale-105" src="/ICONS/Huge-icon.svg" alt="" @click="handleSearch() ">
+          <img class="w-6 h-6 cursor-pointer hover:scale-105 max-md:w-5 max-md:h-5" src="/ICONS/Huge-icon.svg" alt="" @click="handleSearch() ">
         </div>
         <transition
             name="fade"
@@ -44,15 +44,15 @@
         </div>
         </transition>
       </div>
-      <div class="user-action">
+      <div class="user-action max-md:w-20! max-sm:w-14!">
         <div class="cart-container cursor-pointer z-20 hover:scale-[103%]"   @click="$router.push('/cart')">
-          <button  class="button-cart">
+          <button  class="button-cart max-md:scale-100! max-sm:scale-70!">
             <img src="/ICONS/ShoppingBag.svg"  />
           </button>
-          <div v-show="userStore.userInfo.cart.length != 0" class="sircle bg-orange-color">{{ userStore.userInfo.cart.length }}</div>
+          <div v-show="userStore.userInfo.cart.length != 0" class="sircle bg-orange-color max-md:text-sm! max-sm:text-xs max-sm:w-4! max-sm:h-4!">{{ userStore.userInfo.cart.length }}</div>
         </div>
         <div class="relative">
-          <div class="user-avatar z-20 relative"  tabindex="0" @focus="userUpDownOpen = true" @blur="userUpDownOpen = false">
+          <div class="user-avatar z-20 relative max-md:w-10! max-md:h-10! max-sm:w-5! max-sm:h-5!"  tabindex="0" @focus="userUpDownOpen = true" @blur="userUpDownOpen = false">
             <img src="@/assets/ava.jpg" alt="" />
           </div>
 
@@ -189,6 +189,7 @@ const logout = () => {
 .user-action {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   width: 100px;
 }
 

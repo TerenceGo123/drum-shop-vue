@@ -3,24 +3,24 @@
     <div v-if="drumStore.items.length == 0"> 
         <img src="/loader.svg" alt="">
     </div>
-    <div class="banner w-full h-[500px] flex justify-end items-center flex-col bg-[url('../public/BANNERS/EvansSetBanner.png')]  bg-center rounded-[20px] inset-shadow-bottom-black bg-cover  pb-5 mb-8 cursor-pointer transition-all duration-500 hover:scale-[101%]" @click="$router.push('/category/PLAST/12')">
-        <h3 class="uppercase font-norms-b! text-4xl mb-3 text-white">Evans Skin Drum Head Set</h3>
-        <p class=" line-through text-2xl mb-3 text-stroke-color">$159.99</p>
-        <p class="text-orange-color text-4xl font-norms-b!">$59.99</p>
+    <div class="banner w-full h-[500px] flex justify-end items-center flex-col bg-[url('../public/BANNERS/EvansSetBanner.png')]  bg-center rounded-[20px] sm:inset-shadow-bottom-black bg-cover  pb-5 mb-8 cursor-pointer transition-all duration-500 hover:scale-[101%] max-xl:h-[350px] max-lg:h-[250px] max-lg:pb-2 max-lg:mb-4 max-sm:h-[150px]" @click="$router.push('/category/PLAST/12')">
+        <h3 class="uppercase font-norms-b! text-4xl mb-3 text-white max-lg:text-3xl max-lg:mb-1 max-sm:text-lg">Evans Skin Drum Head Set</h3>
+        <p class=" line-through text-2xl mb-3 text-stroke-color max-lg:text-lg max-lg:mb-1">$159.99</p>
+        <p class="text-orange-color text-4xl font-norms-b! max-lg:text-2xl">$59.99</p>
     </div>
     <div>
       <my-title>ПОПУЛЯРНЫЕ КАТЕГОРИИ</my-title>
-      <div class="w-full max-h-full grid gap-5 grid-cols-4 auto-rows-[300px] mb-5 max-lg:grid-cols-3 max-lg:gap-3 max-md:grid-cols-2 ">
-        <div class="home-category items-end pb-10 row-span-2 bg-[url('../public/Cset.jpg')] bg-cover group" @click="$router.push('/category/DRUM')">
+      <div class="w-full max-h-full grid gap-5 grid-cols-4 auto-rows-[300px] mb-5 max-xl:gap-3 max-lg:grid-cols-2 max-lg:auto-rows-[150px] max-md:auto-rows-[100px] max-sm:auto-rows-[70px]">
+        <div class="home-category items-end pb-10 row-span-2 bg-[url('../public/Cset.jpg')] bg-cover group max-md:pb-5" @click="$router.push('/category/DRUM')">
           <h4 class="home-category__title">БАРАБАННЫЕ<br>УСТАНОВКИ</h4>
         </div>
-        <div class="home-category items-end pb-14 relative row-span-2 bg-[url('../public/Cdrum.jpg')] bg-cover group" @click="$router.push('/category/DRUM')">
+        <div class="home-category items-end pb-14 relative row-span-2 bg-[url('../public/Cdrum.jpg')] bg-cover group max-md:pb-8" @click="$router.push('/category/DRUM')">
           <h4 class="home-category__title">БАРАБАНЫ</h4>
         </div>
-        <div class="home-category  col-span-2 bg-[url('../public/Ccymbal.jpg')] bg-cover bg-center group p-10" @click="$router.push('/category/CYMBAL')">
+        <div class="home-category  col-span-2 bg-[url('../public/Ccymbal.jpg')] bg-cover bg-center group p-10 max-lg:row-span-2" @click="$router.push('/category/CYMBAL')">
           <h4 class="home-category__title">ТАРЕЛКИ</h4>
         </div>
-        <div class="home-category col-span-2 bg-[url('../public/Cstick.jpg')] bg-cover bg-center group p-10" @click="$router.push('/category/STICK')">
+        <div class="home-category col-span-2 bg-[url('../public/Cstick.jpg')] bg-cover bg-center group p-10 max-lg:row-span-2" @click="$router.push('/category/STICK')">
           <h4 class="home-category__title">ПАЛОЧКИ</h4>
         </div>
         <!-- <div class="home-category ">
@@ -28,7 +28,7 @@
         </div> -->
       </div>
     </div>
-    <my-title>ПАПУЛЯРНЫЕ ТОВАРЫ</my-title>
+    <my-title>ПОПУЛЯРНЫЕ ТОВАРЫ</my-title>
     <list-items :items="drumStore.items"></list-items>
   </div>
 </template>

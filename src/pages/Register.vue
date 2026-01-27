@@ -23,9 +23,7 @@
             </form>
         </div>
         
-        <div class="login-image-container">
-            <img src="/RegisterImage.png" alt="Изображение для входа" class="login-image">
-        </div>
+        <div class="login-image-container bg-[url('../public/RegisterImage.png')]"></div>
     </div> 
 </template>
 

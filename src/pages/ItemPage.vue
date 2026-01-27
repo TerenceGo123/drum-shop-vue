@@ -66,7 +66,7 @@
             <div>
                 <MyTitle>ОТЗЫВЫ</MyTitle>
                 <div class="flex justify-between">
-                    <div class="flex flex-col w-3/5">
+                    <div class="flex flex-col w-3/5 phone:ml-2">
                         <div class="flex mb-8">
                             <div>
                                 <img src="@/assets/review1.png" alt="" class="">

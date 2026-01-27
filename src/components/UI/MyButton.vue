@@ -1,6 +1,6 @@
 <template>
     <div>
-        <button class="my-btn bg-orange-color text-orange-dark-color transition-colors hover:bg-radial hover:from-orange-color  hover:to-orange-400/50   "  :type="type"><slot></slot><img  v-if="ico != ''" :src='ico' alt="" style="margin-left: 8px;" ></button>
+        <button class="my-btn bg-orange-color text-orange-dark-color transition-colors hover:bg-radial hover:from-orange-color  hover:to-orange-400/50 sm:text-xl   "  :type="type"><slot></slot><img  v-if="ico != ''" :src='ico' alt="" style="margin-left: 8px;" ></button>
     </div>
 </template>
 
@@ -26,7 +26,6 @@ const props = defineProps({
     padding: 12px 32px;
     border-radius: 8px;
     border: none;
-    font-size: 20px;
     font-family: TTNormsPro-B;
     text-transform: uppercase;
 }

@@ -3,8 +3,8 @@
         <div class="content">
             
             <form class="login-form">
-                <div class=" bg-orange-color text-orange-dark-color mb-3 p-2 text-lg">
-                    <p>LOGIN: presentor@mail.com | PASSWORD: presentor</p>
+                <div class=" bg-orange-color text-orange-dark-color mb-3 p-2 2xl:text-lg ">
+                    <p>LOGIN: presentor@mail.com<br>PASSWORD: presentor</p>
                 </div>
                 <p class="error-mesage" v-if="userDataStore.error" >{{ userDataStore.error }}</p>
                 <h1 class="login-title">ВХОД</h1>
@@ -17,7 +17,7 @@
                 <div v-if="userDataStore.loader" style="text-align: center;">
                     <span  class="loader"></span>
                 </div>
-                <my-button class="mb-3" v-else @click="singIn" :type="'submit'" :ico="'/Enter.svg'" >ВОЙТИ</my-button>
+                <my-button class="mb-3" v-else @click="singIn" :type="'submit'" :ico="'/ICONS/Enter.svg'" >ВОЙТИ</my-button>
                 <div class="auth-prompt">
                     <p class="auth-prompt__text">Нет аккаунта?</p>
                     <router-link class="auth-prompt__link" to="/reg">Зарегистрироваться</router-link>
@@ -25,9 +25,7 @@
             </form>
         </div>
         
-        <div class="login-image-container max-lg:hidden">
-            <img src="/SingInImage.png" alt="Изображение для входа" class="login-image">
-        </div>
+        <div class="login-image-container bg-[url('../public/SingInImage.png')]"></div>
     </div> 
 </template>
 

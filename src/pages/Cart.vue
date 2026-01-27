@@ -9,12 +9,17 @@
             
             <div class="w-2/5">
                 <h2 class="text-dark-gray-color text-2xl font-bold mb-6">ОПЛАТА</h2>
-                <input 
-                    type="text" 
-                    v-model="promo"
-                    class="w-full bg-gray-50 px-5 py-3 rounded-lg border-none text-base outline-none mb-6"
-                    placeholder="ПРОМОКОД"
-                >
+                <div class="flex justify-between w-full bg-gray-50 px-5 py-3 rounded-lg  mb-6">
+                    <input 
+                        type="text" 
+                        v-model="promo"
+                        placeholder="ПРОМОКОД (введите: PROMO)"
+                        class="w-4/5 border-none text-base outline-none"
+                    >
+                    <div v-if="promo === code" class="bg-orange-color w-1/10 rounded text-orange-dark-color">
+                        <p class="text-center">15%</p>
+                    </div>
+                </div>
                 <div class="bg-gray-50 rounded-lg mb-6 p-5">
                     <p class="mb-5">{{ totalCount }} шт</p>
                     <div 
@@ -28,6 +33,10 @@
                     <div class="flex justify-between mb-5">
                         <p>Доставка</p>
                         <p>$3</p>
+                    </div>
+                    <div v-if="promo === code" class="flex justify-between mb-5">
+                        <p>Скидка</p>
+                        <p>15%</p>
                     </div>
                     <hr class="mb-5">
                     <div class="flex justify-between">
@@ -50,17 +59,21 @@
 <script setup>
 import ListCartItems from '@/components/ListCartItems.vue';
 import { useUserDataStore } from '@/stores/UserData';
-import { computed } from 'vue';
+import { computed, ref } from 'vue';
 import MyButton from '@/components/UI/MyButton.vue';
 import MyTitle from '@/components/UI/MyTitle.vue';
 
 const userStore = useUserDataStore();
-const promo = ref()
+const code = 'PROMO'
+const promo = ref("")
 
 const summ = computed(() => {
     const total = userStore.userInfo.cart.reduce((sum, item) => 
         sum + (item.count * item.price), 0
     );
+    if (promo.value === code) {
+        return ((total + 3) * 0.85).toFixed(2)
+    }
     return (total + 3).toFixed(2)
 });
 

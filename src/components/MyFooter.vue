@@ -1,14 +1,14 @@
 <template>
     <div>
-        <footer class="footer bg-main-color">
-          <img src="@/assets/DrumLogo.svg" alt="">
-          <div class="flex justify-between w-1/3">
-            <div class="footer__general ">
+        <footer class="footer pl-10 max-xl:pl-5 bg-main-color relative max-md:justify-around! max-md:pl-0 max-md:py-4 max-sm:flex-col max-sm:scale-120">
+          <img src="@/assets/DrumLogo.svg" alt="" class="mr-5 max-lg:w-1/10 max-sm:w-1/4 max-sm:mb-2 max-sm:mr-0">
+          <div class="flex justify-between w-1/3 max-lg:w-2/3 max-sm:hidden">
+            <div class="footer__general mr-3">
               <p class="font-bold">ОБЩЕЕ</p>
               <p>ГЛАВНАЯ</p>
               <p>О НАС</p>
             </div>
-            <div class="footer__categories">
+            <div class="footer__categories mr-3">
               <p class="font-bold">КАТЕГОРИИ</p>
               <p>БАРАБАНЫ</p>
               <p>ПАЛОЧКИ</p>
@@ -20,7 +20,11 @@
               <p>+7 123 456 78 90</p>
             </div>
           </div>
-          <img class="footer__drum" src="@/assets/footerDrum.png" alt="">
+          <img class="footer__drum max-lg:w-1/4 max-md:hidden" src="@/assets/footerDrum.png" alt="">
+          <div>
+            <p>Все права защищены</p>
+            <p class="text-center">© 2025–2026</p>
+          </div>
       </footer>
     </div>
 </template>
@@ -38,7 +42,6 @@
   justify-content: space-between;
   align-items: center;
   overflow: hidden;
-  padding-left: 40px;
   &__drum {
     width: 35%;
   }

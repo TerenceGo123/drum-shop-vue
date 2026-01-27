@@ -16,7 +16,6 @@
 
 
 
-
 /* GLOBAL */
 
 * {
@@ -28,14 +27,21 @@ body {
 }
 
 .title {
-    @apply text-3xl font-norms-b  text-dark-gray-color 
+    @apply text-3xl font-norms-b  text-dark-gray-color max-lg:text-2xl max-md:text-xl max-sm:text-sm 
 }
 
 .content {
-    @apply w-3/5 flex justify-center;
+    @apply w-3/5 flex justify-center max-lg:w-full;
 }
 
+.content-container {
+    @apply w-full p-10 rounded-[20px] max-2xl:p-6 max-md:p-3 max-sm:rounded-[0];
+}
 
+.content-container-auth {
+    padding: 0px;
+    overflow: hidden;
+}
 
 .upDownItem {
     @apply cursor-pointer flex justify-center items-center w-full hover:bg-main-color rounded-2xl py-2 mb-1;
@@ -47,7 +53,7 @@ body {
 }
 
 .home-category__title {
-    @apply text-4xl font-norms-b! text-center text-white  transition-all text-shadow-lg/50 group-hover:text-orange-color group-hover:text-shadow-dark-gray-color
+    @apply text-4xl font-norms-b! text-center text-white  transition-all text-shadow-lg/50 group-hover:text-orange-color group-hover:text-shadow-dark-gray-color max-2xl:text-3xl max-xl:text-2xl max-sm:text-lg
 }
 
 
@@ -55,19 +61,19 @@ body {
 
 
 .login {
-    @apply flex justify-between items-center;
+    @apply flex justify-between items-center h-dvh overflow-hidden max-lg:justify-center;
 }
 
 .login-form {
-    @apply flex flex-col w-[45%];
+    @apply flex flex-col w-[60%] max-xl:w-[70%] max-lg:w-3/5 max-sm:w-full;
 }
 
 .login-title {
-    @apply text-center mb-8 font-norms-b text-4xl;
+    @apply text-center mb-8 font-norms-b text-4xl max-sm:text-3xl;
 }
 
 .login-input {
-    @apply bg-main-color border-stroke-color border border-solid py-2 px-5 rounded-lg mb-5 text-xl;
+    @apply bg-main-color border-stroke-color border border-solid py-2 px-5 rounded-lg mb-5 sm:text-xl max-sm:px-3;
 }
 
 .login-input:last-child {
@@ -75,16 +81,11 @@ body {
 }
 
 .login-image-container {
-    @apply w-[38%];
+    @apply w-[50%] h-full  bg-cover max-lg:hidden;
 }
 
-.login-image-container img {
-    @apply w-full rounded-2xl;
-}
 
-.login-btn {
-    @apply bg-orange-color text-orange-dark-color py-3 px-8 rounded-lg border-none text-xl mb-5 font-norms-b;
-}
+
 
 .remember-me {
     @apply flex items-center mb-8 px-1 w-full;
@@ -119,6 +120,9 @@ body {
 }
 
 
+.footer p {
+    @apply max-xl:text-sm max-lg:text-xs;
+}
 
 /* FONTS */
 
@@ -132,6 +136,10 @@ body {
   font-family: "TTNormsPro-R";
   src: url(@/assets/fonts/TTNormsPro-regular.ttf);
 }
+
+/* ADAPTIVE */
+
+
 
 
 

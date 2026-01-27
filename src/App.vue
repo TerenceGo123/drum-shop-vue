@@ -1,6 +1,6 @@
 <template>
-  <div class="app max-md:py-5!">
-    <div :class="{ 'content-container': true, 'content-container-auth': isAuthPage }" class="bg-white max-md:p-5! max-md:w-[95%]!">
+  <div class="app p-10 max-xl:p-7 max-lg:p-5 max-md:p-2 max-sm:p-0">
+    <div :class="{ 'content-container': true, 'content-container-auth': isAuthPage }" class="bg-white">
       <header-menu
         v-if="!isAuthPage"
         @searchAndFilter="sortedOfCategory"
@@ -72,19 +72,8 @@ button {
 
 .app {
   width: 100%;
-  padding: 40px 0 40px 0;
   margin: auto;
 }
 
-.content-container {
-  width: 90%;
-  margin: 0 auto;
-  padding: 40px;
-  border-radius: 20px;
 
-  &-auth {
-    padding: 0px;
-    overflow: hidden;
-  }
-}
 </style>
