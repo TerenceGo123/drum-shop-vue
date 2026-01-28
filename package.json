@@ -3,8 +3,10 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build"
+    "serve": "concurrently \"npm run tailwind:watch\" \"vue-cli-service serve\"",
+    "build": "npm run tailwind:build && vue-cli-service build",
+    "tailwind:watch": "npx @tailwindcss/cli -i ./src/input.css -o ./src/output.css --watch",
+    "tailwind:build": "npx @tailwindcss/cli -i ./src/input.css -o ./src/output.css --minify"
   },
   "dependencies": {
     "@tailwindcss/cli": "^4.1.16",
@@ -22,6 +24,7 @@
     "@vue/cli-plugin-router": "~5.0.0",
     "@vue/cli-plugin-vuex": "~5.0.0",
     "@vue/cli-service": "~5.0.0",
+    "concurrently": "^9.2.1",
     "sass": "^1.89.2",
     "sass-loader": "^16.0.5"
   },
